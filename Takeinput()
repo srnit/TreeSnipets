@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+template<typename T>
+class treenode
+{
+  public:
+  T data;
+  vector<treenode<T>*>childadd;
+  treenode(T data)
+  {
+      this->data=data;
+  }
+};
+treenode<int>*takeinput()
+{
+    cout<<"Enter data"<<"\n";
+    int d,n;
+    cin>>d;
+    treenode<int>*rootnode=new treenode<int>(d);
+    cout<<"enter child node for"<<rootnode->data;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        rootnode->childadd.push_back(takeinput());
+    }
+    return rootnode;
+}
+void printtree(treenode<int>*root)
+{
+    cout<<root->data<<":";
+    for(int i=0;i<root->childadd.size();i++)
+    {
+        cout<<root->childadd[i]->data<<",";
+    }
+    cout<<endl;
+    for(int i=0;i<root->childadd.size();i++)
+    {
+        printtree(root->childadd[i]);
+    }
+}
+int main()
+{
+    /*treenode<int>*rootnode=new treenode<int>(10);
+    treenode<int>*childnode1=new treenode<int>(20);
+    treenode<int>*childnode2=new treenode<int>(30);
+    rootnode->childadd.push_back(childnode1);
+    rootnode->childadd.push_back(childnode2);*/
+    treenode<int>*rootnode=takeinput();
+    printtree(rootnode);
+    
+}
